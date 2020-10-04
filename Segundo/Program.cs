@@ -8,7 +8,7 @@ namespace Segundo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Escolha uma opção para executar um programa sendo:\n1 - Cacular Area Triangulo\n2 - Mostrar Pessoa mais velha\n3 - Caculo Produto\n4 - Calculo Retangulo\n5 - Calcular Salario de Funcionario");
+            Console.WriteLine("Escolha uma opção para executar um programa sendo:\n1 - Cacular Area Triangulo\n2 - Mostrar Pessoa mais velha\n3 - Caculo Produto\n4 - Calculo Retangulo\n5 - Calcular Salario de Funcionario\n6 - Calculadora Circulo");
             int opcao = int.Parse(Console.ReadLine());
             switch (opcao)
             {
@@ -27,6 +27,9 @@ namespace Segundo
                 case 5:
                     SalarioFuncionario();
                     break;
+                case 6:
+                    Calc();
+                    break;
                 default:
                     Console.WriteLine("Você escolheu uma opção que não existe ainda");
                     break;
@@ -34,9 +37,19 @@ namespace Segundo
 
         }
 
-        
+        private static void Calc()
+        {
+            Console.WriteLine("Entre com o valor do raio: ");
+            double raio = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-        static void CalculaTriangulo()
+            double circ = Calculadora.Circunferencia(raio);
+            double vol = Calculadora.Volume(raio);
+
+            Console.WriteLine("A circunferencia é: {0}\n",circ);
+            Console.WriteLine("O volume é: {0}\n", vol);
+        }
+
+        private static void CalculaTriangulo()
         {
             Triangulo x, y;
             x = new Triangulo();
@@ -57,7 +70,7 @@ namespace Segundo
             Console.WriteLine(areaX);
             Console.WriteLine(areaY);
         }
-        static void PessoaMaisVelha()
+        private static void PessoaMaisVelha()
         {
             Pessoa pessoa1, pessoa2;
             pessoa1 = new Pessoa();
