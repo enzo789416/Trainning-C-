@@ -8,7 +8,10 @@ namespace Segundo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Escolha uma opção para executar um programa sendo:\n1 - Cacular Area Triangulo\n2 - Mostrar Pessoa mais velha\n3 - Caculo Produto\n4 - Calculo Retangulo\n5 - Calcular Salario de Funcionario\n6 - Calculadora Circulo");
+            Console.WriteLine("Escolha uma opção para executar um programa sendo:\n1 - Cacular Area Triangulo\n2 - Mostrar Pessoa mais velha\n" +
+                "3 - Caculo Produto\n4 - Calculo Retangulo\n5 - Calcular Salario de Funcionario\n6 - Calculadora Circulo\n7 - Calculo de produto usando construtor" +
+                "\n8 - Calcular Produto usando sobrecarga\n9 - Calcular produto usando encapsulamento (get/set) padrao\n10 - Calcular Produto usando properties"
+                + "\n11 - Saque em Banco");
             int opcao = int.Parse(Console.ReadLine());
             switch (opcao)
             {
@@ -30,6 +33,21 @@ namespace Segundo
                 case 6:
                     Calc();
                     break;
+                case 7:
+                    Produto2();
+                    break;
+                case 8:
+                    Produto3();
+                    break;
+                case 9:
+                    Produto4();
+                    break;
+                case 10:
+                    Produto5();
+                    break;
+                case 11:
+                    Banco();
+                    break;
                 default:
                     Console.WriteLine("Você escolheu uma opção que não existe ainda");
                     break;
@@ -37,6 +55,42 @@ namespace Segundo
 
         }
 
+       
+        private static void Banco()
+        {
+            Banco b;
+            Console.Write("Entre com o numero da conta: ");
+            int numConta = int.Parse(Console.ReadLine());
+            Console.Write("Entre com o titular da conta: ");
+            string nomeTitular = Console.ReadLine();
+            Console.Write("Havera deposito inicial? (s=1/n=0)");
+            int resp = int.Parse(Console.ReadLine());
+            double saldoInicial;
+            if (resp == 1)
+            {
+                Console.Write("Entre com valor de deposito Inicial:");
+                saldoInicial = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                b = new Banco(numConta, nomeTitular, saldoInicial);
+            }
+            else
+            {
+                b = new Banco(numConta, nomeTitular);
+            }
+            
+            Console.WriteLine();
+            Console.WriteLine("Dados da conta: \n{0}",b);
+            Console.WriteLine();
+            Console.Write("Entre com valor para deposito: ");
+            double x = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            b.Deposito(x);
+            Console.WriteLine("Dados da conta atualizados: \n{0}",b);
+            Console.WriteLine();
+            Console.Write("Entre com valor para saque: ");
+            double y = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            b.Saque(y);
+            Console.WriteLine("Dados da conta atualizados: \n{0}",b);
+
+        }
         private static void Calc()
         {
             Console.WriteLine("Entre com o valor do raio: ");
@@ -113,6 +167,79 @@ namespace Segundo
             int y = int.Parse(Console.ReadLine());
             p.RemoverProduto(y);
             Console.WriteLine("Dados Atualizados: {0}", p);
+        }
+
+        private static void Produto2()
+        {
+            Console.WriteLine("Entre com os dados do produto");
+            Console.Write("Nome: ");
+            string nome = Console.ReadLine();
+            Console.Write("Preço: ");
+            double preco = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            Console.Write("Quantidade no estoque: ");
+            int quantidade = int.Parse(Console.ReadLine());
+
+            Produto2 p2 = new Produto2(nome, preco, quantidade);
+
+            Console.WriteLine("Dados do produto: {0}", p2);
+            Console.WriteLine();
+            Console.Write("Digite a quantidade de produtos a ser adicionados ao estoque: ");
+            int x = int.Parse(Console.ReadLine());
+            p2.AdicionarProduto(x);
+            Console.WriteLine("Dados Atualizados: {0}", p2);
+            Console.WriteLine();
+            Console.Write("Digite a quantidade de produtos a ser removidos do estoque: ");
+            int y = int.Parse(Console.ReadLine());
+            p2.RemoverProduto(y);
+            Console.WriteLine("Dados Atualizados: {0}", p2);
+        }
+
+        private static void Produto3()
+        {
+            Console.WriteLine("Entre com os dados do produto");
+            Console.Write("Nome: ");
+            string nome = Console.ReadLine();
+            Console.Write("Preço: ");
+            double preco = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            //Console.Write("Quantidade no estoque: ");
+            //int quantidade = int.Parse(Console.ReadLine());
+
+            Produto3 p3 = new Produto3(nome, preco);
+
+            Console.WriteLine("Dados do produto: {0}", p3);
+            Console.WriteLine();
+            Console.Write("Digite a quantidade de produtos a ser adicionados ao estoque: ");
+            int x = int.Parse(Console.ReadLine());
+            p3.AdicionarProduto(x);
+            Console.WriteLine("Dados Atualizados: {0}", p3);
+            Console.WriteLine();
+            Console.Write("Digite a quantidade de produtos a ser removidos do estoque: ");
+            int y = int.Parse(Console.ReadLine());
+            p3.RemoverProduto(y);
+            Console.WriteLine("Dados Atualizados: {0}", p3);
+        }
+
+        private static void Produto4()
+        {
+            Produto4 p4 = new Produto4();
+            Console.WriteLine("Entre com os dados do produto");
+            Console.Write("Nome: ");
+            string nome = Console.ReadLine();
+            p4.SetNome(nome);
+            Console.WriteLine(p4.GetNome()); 
+        }
+
+        private static void Produto5()
+        {
+            Produto5 p5 = new Produto5();
+            Console.WriteLine("Entre com os dados do produto");
+            Console.Write("Nome: ");
+            string nome = Console.ReadLine();
+            p5.Nome = nome;
+            Console.WriteLine("Preço: ");
+            p5.Preco = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            
+            Console.WriteLine(p5.Nome + p5.Preco);
         }
 
         private static void CalculaRetangulo()
