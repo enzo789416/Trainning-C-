@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection.Metadata.Ecma335;
 
@@ -11,7 +12,7 @@ namespace Segundo
             Console.WriteLine("Escolha uma opção para executar um programa sendo:\n1 - Cacular Area Triangulo\n2 - Mostrar Pessoa mais velha\n" +
                 "3 - Caculo Produto\n4 - Calculo Retangulo\n5 - Calcular Salario de Funcionario\n6 - Calculadora Circulo\n7 - Calculo de produto usando construtor" +
                 "\n8 - Calcular Produto usando sobrecarga\n9 - Calcular produto usando encapsulamento (get/set) padrao\n10 - Calcular Produto usando properties"
-                + "\n11 - Saque em Banco");
+                + "\n11 - Saque em Banco \n12 - Vet \n13 - Media de produto usando vetor \n14 - Quarto Hotel \n15 - Listas\n16 - Funcionario usando List");
             int opcao = int.Parse(Console.ReadLine());
             switch (opcao)
             {
@@ -48,6 +49,21 @@ namespace Segundo
                 case 11:
                     Banco();
                     break;
+                case 12:
+                    Vet();
+                    break;
+                case 13:
+                    Prod6();
+                    break;
+                case 14:
+                    Hotel();
+                    break;
+                case 15:
+                    List();
+                    break;
+                case 16:
+                    Funcionario();
+                    break;
                 default:
                     Console.WriteLine("Você escolheu uma opção que não existe ainda");
                     break;
@@ -55,7 +71,151 @@ namespace Segundo
 
         }
 
-       
+        private static void Funcionario()
+        {
+            Console.WriteLine("Quantos Funcionarios você deseja registrar?");
+            int n = int.Parse(Console.ReadLine());
+            Funcionario fun;
+            List<Funcionario> f = new List<Funcionario>();
+
+            for (int i = 1; i < n+1; i++)
+            {
+                Console.WriteLine("Funcionario #"+i+":");
+                Console.Write("id: "); 
+                int id = int.Parse(Console.ReadLine());
+                Console.Write("Nome: ");
+                string nome = Console.ReadLine();
+                Console.Write("Salario: ");
+                double salario = double.Parse(Console.ReadLine(),CultureInfo.InvariantCulture);
+                f.Add(fun = new Funcionario(id, nome, salario));
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Informe o ID do funcionario: ");
+
+            
+        }
+
+        private static void List()
+        {
+            List<string> list = new List<string>();
+
+            list.Add("amor");
+            list.Add("barba");
+            list.Add("cavalo");
+            list.Add("dado");
+            list.Insert(0, "velho");
+
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("----------------------------");
+
+            Console.WriteLine("List Count " + list.Count);
+            string s = list.Find(x => x[0] == 'd');
+            Console.WriteLine("Last 'd': " + s);
+            
+            int posi = list.FindIndex(x => x[0] == 'a');
+            Console.WriteLine("First position 'A': " + posi);
+            
+            int posi2 = list.FindLastIndex(x => x[0] == 'a');
+            Console.WriteLine("Last position 'A': " + posi);
+
+            Console.WriteLine("----------------------------");
+
+            List<string> list2 = list.FindAll(x => x.Length > 5);
+            foreach (var item in list2)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("----------------------------");
+
+            list.Remove("barba");
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
+            list.RemoveAll(x=>x[0] == 'c');
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
+            list.RemoveAt(0);
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        private static void Hotel()
+        {
+            Hotel[] h = new Hotel[9];
+            Console.Write("Quanto quartos vao ser alugados? ");
+            int n = int.Parse(Console.ReadLine());
+            Console.WriteLine();
+            for (int i = 1; i < n+1; i++)
+            {
+                Console.WriteLine("Quarto #"+i+":");
+                Console.Write("Nome do Hospede: ");
+                string nome = Console.ReadLine();
+                Console.Write("Email do Hospede: ");
+                string email = Console.ReadLine();
+                Console.Write("Qual quarto quer? ");
+                int quarto = int.Parse(Console.ReadLine());
+                h[quarto] = new Hotel { NomeHospede = nome, EmailHospede = email, QuartoHotel = quarto };
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            Console.WriteLine("Quartos Ocupados: ");
+            for (int i = 0; i < 9; i++)
+            {
+                if (h[i] != null)
+                {
+                    Console.WriteLine(h[i].QuartoHotel+": "+h[i].NomeHospede+", "+h[i].EmailHospede);
+                }
+            }
+        }
+        private static void Prod6()
+        {
+            int n = int.Parse(Console.ReadLine());
+
+            Produto6[] vet = new Produto6[n];
+
+            for (int i = 0; i < n; i++)
+            {
+                string nome = Console.ReadLine();
+                double preco = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);  
+                vet[i] = new Produto6 { Nome = nome, Preco = preco };
+            }
+
+            double soma = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                soma+=vet[i].Preco;
+            }
+            Console.WriteLine("Preço é: " + soma/n);
+        }
+
+       private static void Vet()
+        {
+            int n = int.Parse(Console.ReadLine());
+            double[] vet = new double[n];
+            double soma = 0;
+            for (int i = 0; i < n; i++)
+            {
+                vet[i] = i;
+                soma += vet[i];
+            }
+
+            Console.WriteLine(soma);
+
+
+        }
         private static void Banco()
         {
             Banco b;
