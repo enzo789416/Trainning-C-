@@ -12,7 +12,7 @@ namespace Segundo
             Console.WriteLine("Escolha uma opção para executar um programa sendo:\n1 - Cacular Area Triangulo\n2 - Mostrar Pessoa mais velha\n" +
                 "3 - Caculo Produto\n4 - Calculo Retangulo\n5 - Calcular Salario de Funcionario\n6 - Calculadora Circulo\n7 - Calculo de produto usando construtor" +
                 "\n8 - Calcular Produto usando sobrecarga\n9 - Calcular produto usando encapsulamento (get/set) padrao\n10 - Calcular Produto usando properties"
-                + "\n11 - Saque em Banco \n12 - Vet \n13 - Media de produto usando vetor \n14 - Quarto Hotel \n15 - Listas\n16 - Funcionario usando List");
+                + "\n11 - Saque em Banco \n12 - Vet \n13 - Media de produto usando vetor \n14 - Quarto Hotel \n15 - Listas\n16 - Funcionario usando List\n17 - Condição Ternaria\n18 - String Functions");
             int opcao = int.Parse(Console.ReadLine());
             switch (opcao)
             {
@@ -64,11 +64,142 @@ namespace Segundo
                 case 16:
                     Funcionario();
                     break;
+                case 17:
+                    CondicaoTernaria();
+                    break;
+                case 18:
+                    FuncoesString();
+                    break;
+
                 default:
                     Console.WriteLine("Você escolheu uma opção que não existe ainda");
                     break;
             }
 
+        }
+
+        private static void CondicaoTernaria()
+        {
+            double preco = double.Parse(Console.ReadLine()) ;
+            double desconto = (preco < 20.0) ? preco * 0.1 : preco * 0.05;
+            Console.WriteLine(desconto);
+        }
+
+        private static void FuncoesString()
+        {
+            string original = "abcde FGHIJ ABC abc DEFG ";
+            string s1 = original.ToUpper();
+            string s2 = original.ToLower();
+            string s3 = original.Trim();
+            int n1 = original.IndexOf("bc");
+            int n2 = original.LastIndexOf("bc");
+            string s4 = original.Substring(3);
+            string s5 = original.Substring(3, 5);
+            string s6 = original.Replace('a', 'x');
+            string s7 = original.Replace("abc", "xy");
+            bool b1 = String.IsNullOrEmpty(original);
+            bool b2 = String.IsNullOrWhiteSpace(original);
+            Console.WriteLine("Original: -" + original + "-");
+            Console.WriteLine("ToUpper: -" + s1 + "-");
+            Console.WriteLine("ToLower: -" + s2 + "-");
+            Console.WriteLine("Trim: -" + s3 + "-");
+            Console.WriteLine("IndexOf('bc'): " + n1);
+            Console.WriteLine("LastIndexOf('bc'): " + n2);
+            Console.WriteLine("Substring(3): -" + s4 + "-");
+            Console.WriteLine("Substring(3, 5): -" + s5 + "-");
+            Console.WriteLine("Replace('a', 'x'): -" + s6 + "-");
+            Console.WriteLine("Replace('abc', 'xy'): -" + s7 + "-");
+            Console.WriteLine("IsNullOrEmpty: " + b1);
+            Console.WriteLine("IsNullOrWhiteSpace: " + b2);
+        }
+
+        private static void TempoHora()
+        {
+            DateTime d1 = DateTime.Now;
+            DateTime d2 = DateTime.UtcNow;
+            DateTime d3 = DateTime.Today;
+            Console.WriteLine(d1);
+            Console.WriteLine(d2);
+            Console.WriteLine(d3);
+
+            DateTime d4 = DateTime.Parse("2000-08-15");
+            DateTime d5 = DateTime.Parse("2000-08-15 13:05:58");
+            DateTime d6 = DateTime.Parse("15/08/2000");
+            DateTime d7 = DateTime.Parse("15/08/2000 13:05:58");
+            Console.WriteLine(d4);
+            Console.WriteLine(d5);
+            Console.WriteLine(d6);
+            Console.WriteLine(d7);
+
+            DateTime d8 = DateTime.ParseExact("2000-08-15", "yyyy-MM-dd",
+            CultureInfo.InvariantCulture);
+            DateTime d9 = DateTime.ParseExact("15/08/2000 13:05:58", "dd/MM/yyyy HH:mm:ss",
+            CultureInfo.InvariantCulture);
+            Console.WriteLine(d8);
+            Console.WriteLine(d9);
+
+            DateTime d10 = new DateTime(2001, 8, 15, 13, 45, 58, 275);
+            Console.WriteLine(d);
+            Console.WriteLine("1) Date: " + d10.Date);
+            Console.WriteLine("2) Day: " + d10.Day);
+            Console.WriteLine("3) DayOfWeek: " + d10.DayOfWeek);
+            Console.WriteLine("4) DayOfYear: " + d10.DayOfYear);
+            Console.WriteLine("5) Hour: " + d10.Hour);
+            Console.WriteLine("6) Kind: " + d10.Kind);
+            Console.WriteLine("7) Millisecond: " + d10.Millisecond);
+            Console.WriteLine("8) Minute: " + d10.Minute);
+            Console.WriteLine("9) Month: " + d10.Month);
+            Console.WriteLine("10) Second: " + d10.Second);
+            Console.WriteLine("11) Ticks: " + d10.Ticks);
+            Console.WriteLine("12) TimeOfDay: " + d10.TimeOfDay);
+            Console.WriteLine("13) Year: " + d10.Year);
+
+            DateTime d11 = new DateTime(2001, 8, 15, 13, 45, 58);
+            string s1 = d11.ToLongDateString();
+            string s2 = d11.ToLongTimeString();
+            string s3 = d11.ToShortDateString();
+            string s4 = d11.ToShortTimeString();
+            string s5 = d11.ToString();
+            string s6 = d11.ToString("yyyy-MM-dd HH:mm:ss");
+            string s7 = d11.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            Console.WriteLine(s1);
+            Console.WriteLine(s2);
+            Console.WriteLine(s3);
+            Console.WriteLine(s4);
+            Console.WriteLine(s5);
+            Console.WriteLine(s6);
+            Console.WriteLine(s7);
+
+            DateTime d12 = DateTime.Parse("2000-08-15 13:05:58");
+            DateTime d13 = DateTime.Parse("2000-08-15T13:05:58Z"); // cria local DateTime
+            Console.WriteLine("d1: " + d12);
+            Console.WriteLine("d1 Kind: " + d12.Kind);
+            Console.WriteLine("d1 to Local: " + d12.ToLocalTime());
+            Console.WriteLine("d1 to Utc: " + d12.ToUniversalTime());
+            Console.WriteLine();
+            Console.WriteLine("d2: " + d13);
+            Console.WriteLine("d2 Kind: " + d13.Kind);
+            Console.WriteLine("d2 to Local: " + d13.ToLocalTime());
+            Console.WriteLine("d2 to Utc: " + d13.ToUniversalTime());
+            Console.WriteLine();
+            Console.WriteLine(d13.ToString("yyyy-MM-ddTHH:mm:ssZ")); // cuidado!
+            Console.WriteLine(d13.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ"));
+        }
+
+        private static void DuracaoTempo()
+        {
+            TimeSpan t1 = TimeSpan.FromDays(1.5);
+            TimeSpan t2 = TimeSpan.FromHours(1.5);
+            TimeSpan t3 = TimeSpan.FromMinutes(1.5);
+            TimeSpan t4 = TimeSpan.FromSeconds(1.5);
+            TimeSpan t5 = TimeSpan.FromMilliseconds(1.5);
+            TimeSpan t6 = TimeSpan.FromTicks(900000000L);
+            Console.WriteLine(t1);
+            Console.WriteLine(t2);
+            Console.WriteLine(t3);
+            Console.WriteLine(t4);
+            Console.WriteLine(t5);
+            Console.WriteLine(t6);
         }
 
         private static void Funcionario()
